@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login Cinta 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;height:100vh;
+  display:flex;justify-content:center;align-items:center;
+  background: linear-gradient(135deg,#ffc0cb,#ffd6e7,#fce7f3);
+  font-family:'Quicksand',sans-serif;
+  overflow:hidden;
+}
+
+/* floating hearts */
+.heart{
+ position:absolute;color:#ff5e9c;font-size:20px;
+ animation:float 6s linear infinite;
+}
+@keyframes float{
+ from{transform:translateY(100vh) scale(1);opacity:1}
+ to{transform:translateY(-10vh) scale(.5);opacity:0}
+}
+
+.card{
+ width:350px;padding:25px;border-radius:26px;
+ background: rgba(255,255,255,.6);
+ backdrop-filter:blur(15px);
+ box-shadow:0 20px 50px rgba(0,0,0,.1);
+ text-align:center;
+ animation:fade .8s;
+}
+
+@keyframes fade{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+h2{color:#ff3d81}
+.subtitle{font-size:13px;opacity:.7;margin-bottom:14px}
+
+input{
+ width:100%;padding:12px;border-radius:14px;
+ border:none;margin-top:10px;outline:none;
+ background:#fff;
+}
+
+button{
+ width:100%;padding:11px;margin-top:12px;border-radius:14px;
+ border:none;cursor:pointer;
+ background:linear-gradient(45deg,#ff5fa2,#ff85b3);
+ color:white;font-weight:bold;transition:.3s;
+}
+button:hover{transform:scale(1.05)}
+
+.toast{
+ position:fixed;top:20px;right:20px;
+ background:#ff5fa2;color:white;
+ padding:10px 16px;border-radius:14px;
+ opacity:0;transform:translateY(-20px);transition:.4s;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* GOAL LOVE */
+.love{
+ position:fixed;inset:0;background:#fff0f5;
+ display:flex;flex-direction:column;
+ justify-content:center;align-items:center;
+ font-size:50px;color:#ff3d81;
+ opacity:0;pointer-events:none;transition:.4s;
+}
+.love.show{opacity:1}
+.love span{font-size:16px;color:#555}
+
+/* DASHBOARD */
+.dashboard{
+ width:360px;padding:24px;border-radius:26px;
+ background:rgba(255,255,255,.7);backdrop-filter:blur(16px);
+ box-shadow:0 20px 50px rgba(0,0,0,.1);
+ text-align:center;
+ display:none;
+}
+.avatar{
+ width:90px;height:90px;border-radius:50%;
+ object-fit:cover;border:3px solid #ff85b3;
+ margin-bottom:10px;
+}
+.small{font-size:13px;opacity:.7;margin-bottom:10px}
+.menu button{background:#ffd1e8;color:#c02660}
+
+.stat{
+ background:#fff;border-radius:14px;padding:8px;
+ margin:6px;font-size:13px
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+for(let i=0;i<25;i++){
+ let h=document.createElement("div");
+ h.className="heart";
+ h.style.left=Math.random()*100+"vw";
+ h.style.animationDuration=(3+Math.random()*5)+"s";
+ h.innerHTML="💖";
+ document.body.appendChild(h);
+}
+</script>
+
+<!-- LOGIN -->
+<div class="card" id="login">
+  <h2>My Love Login 💗</h2>
+  <div class="subtitle">Masukkan dengan hati ya 🥰</div>
+
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+
+  <button onclick="login()">LOGIN CINTA</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dash">
+  <img class="avatar" src="https://i.imgur.com/Wp9yI6F.png">
+  <h3>Hai Sayang 💋</h3>
+  <div class="small">Terima kasih sudah masuk ke hatiku 🤍</div>
+
+  <div class="stat">💌 Rindu Level: TAK TERHINGGA</div>
+  <div class="stat">❤️ Love Meter: 100000%</div>
+  <div class="stat">🌹 Status: Kamu Milikku</div>
+
+  <div class="menu">
+   <button onclick="showLove()">PENCET AKU 💕</button>
+   <button onclick="logout()">LOGOUT</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- LOVE CELEBRATION -->
+<div class="love" id="love">
+  LOVE YOU 🥰
+  <span>Kamu adalah duniaku 🌍💖</span>
+</div>
+
+<audio id="loveSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-flute-bonus-2313.mp3"></audio>
+
+<script>
+// AKUN KHUSUS PACAR
+const USERNAME = "rindu";
+const PASSWORD = "sayang";
+
+function toast(t){
+ let b=document.getElementById("toast");
+ b.innerText=t;
+ b.classList.add("show");
+ setTimeout(()=>b.classList.remove("show"),2200);
+}
+
+function login(){
+ let u=user.value.toLowerCase();
+ let p=pass.value.toLowerCase();
+
+ if(u===USERNAME && p===PASSWORD){
+   success();
+ } else {
+   toast("Salah password sayang 😚");
+ }
+}
+
+function success(){
+ document.getElementById("loveSound").play();
+ document.getElementById("login").style.display="none";
+ document.getElementById("dash").style.display="block";
+ toast("Berhasil masuk ke hatiku 💘");
+}
+
+function showLove(){
+ let l=document.getElementById("love");
+ l.classList.add("show");
+ setTimeout(()=>l.classList.remove("show"),2500);
+}
+
+function logout(){
+ location.reload();
+}
+</script>
+
+</body>
+</html>
+
